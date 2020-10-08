@@ -1,0 +1,5 @@
+https://github.com/kubernetes/ingress-nginx.git
+
+#######Steps#######
+go to deploy/static/provider/aws
+in deploy.yaml file comment the nlb line (annotatation) and run

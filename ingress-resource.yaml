@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: wahaj.eurustechnologies.info
+    http:
+      paths:
+        - path: /python
+          backend:
+            serviceName: hello-python-service
+            servicePort: 6000
+        - path: /
+          backend:
+            serviceName: wordpress
+            servicePort: 80

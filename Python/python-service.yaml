@@ -4,9 +4,34 @@ metadata:
   name: hello-python-service
 spec:
   selector:
-    app: hello-python
-  type: NodePort
+    app: hello-python 
   ports:
-    - nodePort: 30010
-      port: 6000
+    - port: 6000
       targetPort: 5000
+
+
+####nodeport####
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: hello-python-service
+# spec:
+#   selector:
+#     app: hello-python
+#   type: NodePort
+#   ports:
+#     - nodePort: 30010
+#       port: 6000
+#       targetPort: 5000
+  
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: hello-python-service
+# spec:
+#   selector:
+#     app: hello-python
+#   type: LoadBalancer
+#   ports:
+#     - port: 6000
+#       targetPort: 5000

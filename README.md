@@ -33,7 +33,7 @@ export KOPS_STATE_STORE=s3://wahaj
 ```
 kops create cluster \
 --node-count=1 \
---node-size="t2.small" \
+--node-size="t2.medium" \
 --master-size="t2.medium" \
 --zones=us-east-2a \
 --name=${KOPS_CLUSTER_NAME} --yes
@@ -49,4 +49,21 @@ kubectl get pvc
 kubectl get sc
 kubectl get svc
 kubectle get endpoints
+```
+###### steps
+```
+ clone https://github.com/kubernetes/ingress-nginx.git
+```
+```
+go to deploy/static/provider/aws
+in deploy.yaml file comment the nlb line (annotatation) and run
+```
+```
+sh create.sh
+```
+```
+sh python-create.sh
+```
+```
+kubectl create -f ingress-resource.yaml
 ```
