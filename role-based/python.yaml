@@ -9,7 +9,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: arn:aws:iam::020046395185:instance-profile/ECRAccess
+        iam.amazonaws.com/role: arn
       labels:
         app: hello-python
     spec:
