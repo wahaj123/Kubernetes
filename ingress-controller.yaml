@@ -1,5 +1,39 @@
-https://github.com/kubernetes/ingress-nginx.git
+# https://github.com/kubernetes/ingress-nginx.git
 
-#######Steps#######
-go to deploy/static/provider/aws
-in deploy.yaml file comment the nlb line (annotatation) and run
+# #######Steps#######
+# go to deploy/static/provider/aws
+# in deploy.yaml file comment the nlb line (annotatation) and run
+
+# For simple elb and ingress
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: 'true'
+    #service.beta.kubernetes.io/aws-load-balancer-type: nlb
+  labels:
+    helm.sh/chart: ingress-nginx-3.6.0
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/version: 0.40.2
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: controller
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: https
+  selector:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/component: controller
